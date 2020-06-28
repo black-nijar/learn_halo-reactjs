@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SignOut = ({ onSignOut }) => {
   return (
     <div>
-      <button className='btn btn-danger' onClick={onSignOut}>
+      <Link to='/' onClick={onSignOut}>
         Sign Out
-      </button>
+      </Link>
     </div>
   );
 };

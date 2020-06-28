@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import SignIn from './SignIn';
 import SignOut from './SignOut';
-import { userProfile } from '../actions/actions';
-
+import { userProfile } from '../../actions/actions';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class GoogleAuth extends Component {
   componentDidMount() {
-    const CLIENT_ID =
-      '467256443726-gsfrf3e6a5uepdp5il8rso3sgfgcv1f0.apps.googleusercontent.com';
+    
     window.gapi.load('client:auth2', () => {
       window.gapi.client
         .init({
@@ -79,16 +78,26 @@ class GoogleAuth extends Component {
     }
   };
   render() {
-    console.log('this.props', this.props);
+    const {
+      auth: { isAuthenticated }
+    } = this.props;
+    console.log('isAuthenticated', isAuthenticated);
     return (
       <div>
-        <div>
-          <SignIn onSignIn={this.onSignIn} />
+        {isAuthenticated ? (
           <SignOut onSignOut={this.onSignOut} />
-        </div>
+        ) : (
+          <SignIn onSignIn={this.onSignIn} />
+        )}
       </div>
     );
   }
 }
 
-export default connect(null, { userProfile })(GoogleAuth);
+GoogleAuth.propType = {
+  auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+export default connect(mapStateToProps, { userProfile })(GoogleAuth);
