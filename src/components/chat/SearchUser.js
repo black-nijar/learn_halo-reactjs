@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
 
 const SearchUser = () => {
   const [text, setText] = useState('');
@@ -18,4 +20,11 @@ const SearchUser = () => {
   );
 };
 
-export default SearchUser;
+SearchUser.propType = {
+
+}
+
+const mapStateToProps = state => ({
+  
+})
+export default connect(mapStateToProps)(SearchUser);

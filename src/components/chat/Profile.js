@@ -13,10 +13,10 @@ const Profile = ({ auth: { user } }) => {
                 <h5>Profile</h5>
               </div>
               <div className='image'>
-                <img src={user.image} className='user-image' alt='user-picture'/>
+                <img src={user.photoUrl} className='user-image' alt='user-picture'/>
               </div>
-              <h6>Name : {user.userName}</h6>
-              <h6>UserId : it's@{user.userEmail}</h6>
+              <h6>Name : {user.givenName}</h6>
+              <h6>UserId : it's@{user.email}</h6>
             </div>
           </div>
         </div>

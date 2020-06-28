@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import SignIn from './SignIn';
 import SignOut from './SignOut';
-import { userProfile } from '../../actions/actions';
+import { userProfile, usersData } from '../../actions/actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import dataBase from '../../firebaseConfig/fbConfig';
 
 class GoogleAuth extends Component {
   componentDidMount() {
@@ -26,23 +27,32 @@ class GoogleAuth extends Component {
 
   // Auth status
   onAuthChange = isSignedIn => {
+    const { usersData } = this.props;
     if (isSignedIn) {
-      const userId = this.auth.currentUser.le.Qt.JU;
-      const userName = this.auth.currentUser.le.Qt.nW;
-      const image = this.auth.currentUser.le.Qt.MK;
-      const userEmail = this.auth.currentUser.le.Qt.Au;
+      const id = this.auth.currentUser.le.Qt.JU;
+      const givenName = this.auth.currentUser.le.Qt.nW;
+      const photoUrl = this.auth.currentUser.le.Qt.MK;
+      const email = this.auth.currentUser.le.Qt.Au;
+      const familyName = this.auth.currentUser.le.Qt.nU;
+      const name = this.auth.currentUser.le.Qt.Bd;
       if (
-        userId !== undefined &&
-        userName !== undefined &&
-        image !== undefined &&
-        userEmail !== undefined
+        id !== undefined &&
+        givenName !== undefined &&
+        photoUrl !== undefined &&
+        email !== undefined
       ) {
         const userData = {
-          userId,
-          userName,
-          userEmail,
-          image
+          id,
+          givenName,
+          email,
+          photoUrl,
+          familyName,
+          name
         };
+        // Upload user data to firebase
+        dataBase.child('users').child(id).set(userData)
+
+        // Send user data to redux
         this.props.userProfile(userData);
       }
     } else {
@@ -102,9 +112,10 @@ class GoogleAuth extends Component {
 }
 
 GoogleAuth.propType = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  usersData: PropTypes.func.isRequired,
 };
 const mapStateToProps = state => ({
   auth: state.auth
 });
-export default connect(mapStateToProps, { userProfile })(GoogleAuth);
+export default connect(mapStateToProps, { userProfile, usersData })(GoogleAuth);
