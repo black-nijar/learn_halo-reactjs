@@ -5,7 +5,7 @@ const SearchUser = () => {
   
   return (
     <div className='container'>
-      <form className='form'>
+      <form className='form' >
         <div className='search-input'>
           <input
             className='form-control'

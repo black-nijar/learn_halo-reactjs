@@ -7,8 +7,9 @@ import { connect } from 'react-redux';
 
 class GoogleAuth extends Component {
   componentDidMount() {
+    // CLIENT ID
     const CLIENT_ID =
-
+     
     window.gapi.load('client:auth2', () => {
       window.gapi.client
         .init({
@@ -22,6 +23,8 @@ class GoogleAuth extends Component {
         });
     });
   }
+
+  // Auth status
   onAuthChange = isSignedIn => {
     if (isSignedIn) {
       const userId = this.auth.currentUser.le.Qt.JU;
@@ -45,9 +48,13 @@ class GoogleAuth extends Component {
     } else {
     }
   };
+
+  // Sign In
   onSignIn = () => {
     this.auth.signIn();
   };
+
+  // Sign Out
   onSignOut = () => {
     this.auth.signOut();
   };

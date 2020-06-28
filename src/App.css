@@ -1,7 +1,25 @@
 .form {
   margin-top: 10px;
 }
-.search-input{
-  width: 250;
+.search-input {
+  width: 450px;
   margin: auto;
+}
+.user-profile {
+  margin: auto;
+  width: 450px;
+}
+.card-header {
+  text-align: center;
+  font-weight: bold;
+}
+.user-image {
+  border-radius: 50%;
+  width: 25%;
+}
+.image {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
 }
