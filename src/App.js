@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Landing from './components/layout/Landing';
 import Chat from './components/chat/Chat';
@@ -6,7 +6,7 @@ import Profile from './components/chat/Profile';
 import SearchUser from './components/chat/SearchUser';
 import NavBar from './components/layout/NavBar';
 import PrivateRoute from './routing/PrivateRoute';
-import GoogleAuth from './components/auth/GoogleAuth';
+import './App.css'
 
 const App = () => {
   return (

@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 class GoogleAuth extends Component {
   componentDidMount() {
     const CLIENT_ID =
-     
+
     window.gapi.load('client:auth2', () => {
       window.gapi.client
         .init({
@@ -82,7 +82,6 @@ class GoogleAuth extends Component {
     const {
       auth: { isAuthenticated }
     } = this.props;
-    console.log('isAuthenticated', isAuthenticated);
     return (
       <div>
         {isAuthenticated ? (

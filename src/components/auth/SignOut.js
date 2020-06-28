@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const SignOut = ({ onSignOut }) => {
   return (
     <div>
-      <Link to='/' onClick={onSignOut}>
+      <Link to='/' onClick={onSignOut} style={{color: 'black'}}>
         Sign Out
       </Link>
     </div>

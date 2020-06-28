@@ -1,5 +1,6 @@
 import { USER_PROFILE } from './types';
 
+// User Profile
 export const userProfile = data => {
   console.log('data', data)
   return {
@@ -7,3 +8,5 @@ export const userProfile = data => {
     payload: data
   };
 };
+
+
