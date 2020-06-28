@@ -7,17 +7,26 @@ import GoogleAuth from '../auth/GoogleAuth';
 const NavBar = ({ auth: { isAuthenticated, loading } }) => {
   const authLinks = (
     <Fragment>
-      <li>
-        <Link to='/chat'>Chat</Link>
-      </li>
-      <li>
-        <Link to='/search-user'>Search</Link>
-      </li>
-      <li>
-        <Link to='/user-profile'>Profile</Link>
-      </li>
-
-      <GoogleAuth />
+      <ul className='nav'>
+        <li className='nav-link'>
+          <Link to='/chat' style={{ color: 'black' }}>
+            Chat
+          </Link>
+        </li>
+        <li className='nav-link'>
+          <Link to='/search-user' style={{ color: 'black' }}>
+            Search
+          </Link>
+        </li>
+        <li className='nav-link'>
+          <Link to='/user-profile' style={{ color: 'black' }}>
+            Profile
+          </Link>
+        </li>
+        <li className='nav-link' style={{ color: 'black' }}>
+          <GoogleAuth />
+        </li>
+      </ul>
     </Fragment>
   );
 
@@ -29,14 +38,14 @@ const NavBar = ({ auth: { isAuthenticated, loading } }) => {
     </Fragment>
   );
   return (
-    <div>
-      <nav className='navbar navbar-light bg-light'>
+    <nav className='navbar navbar-light bg-light'>
+      <div className='container'>
         <Link to='/' className='navbar-brand'>
           HaloApp
         </Link>
-        <ul className='navbar-nav mr-auto'>{isAuthenticated ? authLinks : guestLink}</ul>
-      </nav>
-    </div>
+        {isAuthenticated ? authLinks : guestLink}
+      </div>
+    </nav>
   );
 };
 
