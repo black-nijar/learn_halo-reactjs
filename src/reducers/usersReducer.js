@@ -1,12 +1,7 @@
 import { USERS_DATA } from "../actions/types";
 
 const initState = {
-  email: '',
-  familyName: '',
-  givenName: '',
-  id: '',
-  name: '',
-  photoUrl: ''
+users: []
 };
 
 export const usersReducer = (state = initState, action) => {
@@ -24,7 +19,10 @@ export const usersReducer = (state = initState, action) => {
         const photoUrl = users[key].photoUrl;
         usersDetail.push({ email, familyName, givenName, id, name, photoUrl });
       }
-      return usersDetail;
+      return {
+        ...state,
+        users: usersDetail
+      };
     default:
       return state;
   }

@@ -8,12 +8,15 @@ const Profile = ({ auth: { user } }) => {
       {user !== null ? (
         <div>
           <div className='user-profile' style={{ marginTop: '20px' }}>
-            <div className='card' style={{ padding: '20px' }}>
+            <div
+              className='card col-md-8 col-sm-12 col-lg-6'
+              style={{ padding: '20px', margin: 'auto' }}
+            >
               <div className='card-header'>
                 <h5>Profile</h5>
               </div>
               <div className='image'>
-                <img src={user.photoUrl} className='user-image' alt='user-picture'/>
+                <img src={user.photoUrl} className='user-image' alt='user' />
               </div>
               <h6>Name : {user.givenName}</h6>
               <h6>UserId : it's@{user.email}</h6>

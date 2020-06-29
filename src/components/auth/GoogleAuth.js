@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SignIn from './SignIn';
 import SignOut from './SignOut';
-import { userProfile, usersData } from '../../actions/actions';
+import { userProfile } from '../../actions/actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import dataBase from '../../firebaseConfig/fbConfig';
@@ -27,7 +27,7 @@ class GoogleAuth extends Component {
 
   // Auth status
   onAuthChange = isSignedIn => {
-    const { usersData } = this.props;
+    
     if (isSignedIn) {
       const id = this.auth.currentUser.le.Qt.JU;
       const givenName = this.auth.currentUser.le.Qt.nW;
@@ -111,11 +111,11 @@ class GoogleAuth extends Component {
   }
 }
 
-GoogleAuth.propType = {
+GoogleAuth.propTypes = {
   auth: PropTypes.object.isRequired,
-  usersData: PropTypes.func.isRequired,
 };
+
 const mapStateToProps = state => ({
   auth: state.auth
 });
-export default connect(mapStateToProps, { userProfile, usersData })(GoogleAuth);
+export default connect(mapStateToProps, { userProfile })(GoogleAuth);
