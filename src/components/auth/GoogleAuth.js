@@ -27,7 +27,6 @@ class GoogleAuth extends Component {
 
   // Auth status
   onAuthChange = isSignedIn => {
-    
     if (isSignedIn) {
       const id = this.auth.currentUser.le.Qt.JU;
       const givenName = this.auth.currentUser.le.Qt.nW;
@@ -50,7 +49,10 @@ class GoogleAuth extends Component {
           name
         };
         // Upload user data to firebase
-        dataBase.child('users').child(id).set(userData)
+        dataBase
+          .child('users')
+          .child(id)
+          .set(userData);
 
         // Send user data to redux
         this.props.userProfile(userData);
@@ -112,7 +114,7 @@ class GoogleAuth extends Component {
 }
 
 GoogleAuth.propTypes = {
-  auth: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

@@ -26,6 +26,9 @@ const NavBar = ({ auth: { isAuthenticated, loading } }) => {
         <li className='nav-link' style={{ color: 'black' }}>
           <GoogleAuth />
         </li>
+        <li className='nav-link'>
+         <Link to='/translate'>Translate</Link>
+        </li>
       </ul>
     </Fragment>
   );

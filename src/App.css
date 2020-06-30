@@ -30,3 +30,16 @@
 .users-list {
   margin-top: 10px;
 }
+.message-text-layout {
+  color: aquamarine;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+.message-text {
+  color: rgb(112, 143, 239);
+  align-self: flex-end;
+}
+.user-message {
+  padding: 10em;
+}

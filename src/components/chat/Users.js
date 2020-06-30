@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Users = ({ users: { users } }) => {
   const list_users =
@@ -9,7 +10,11 @@ const Users = ({ users: { users } }) => {
           <div key={user.id} className='users-list'>
             <div
               className='card'
-              style={{ flexDirection: 'row', padding: '1em' }}
+              style={{
+                flexDirection: 'row',
+                padding: '1em',
+                alignItems: 'center'
+              }}
             >
               <div className='user-picture-layout'>
                 <img
@@ -19,6 +24,14 @@ const Users = ({ users: { users } }) => {
                 />
               </div>
               <div className='user-name'>{user.name}</div>
+              <div className='message-text-layout'>
+                <Link
+                  to={{ pathname: `/message/${user.name}`, user: user }}
+                  className='message-text'
+                >
+                  Message
+                </Link>
+              </div>
             </div>
           </div>
         );
