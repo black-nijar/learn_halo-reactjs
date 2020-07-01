@@ -10,7 +10,7 @@ class GoogleAuth extends Component {
   componentDidMount() {
     // CLIENT ID
     const CLIENT_ID =
-     
+      
     window.gapi.load('client:auth2', () => {
       window.gapi.client
         .init({

@@ -41,23 +41,44 @@
   align-self: flex-end;
 }
 .user-message {
-  padding: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 .messages {
-  padding: 5% 0;
   overflow: auto;
   flex: auto;
 }
 .messageBox {
-  display: inline-block;
-  max-width: 100%;
+  display: flex;
+
 }
 .messageContainer {
   display: flex;
-  justify-content: flex-end;
-  padding: 0 5%;
   margin-top: 3px;
 }
-.justifyEnd {
-  justify-content: flex-end;
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border-radius: 8px;
+  height: 60%;
+  width: 50%;
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .outerContainer {
+    height: 10%;
+  }
+  .innerContainer {
+    width: 20%;
+    height: 50%;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 1200px) {
+  .innerContainer {
+    width: 75%;
+  }
 }

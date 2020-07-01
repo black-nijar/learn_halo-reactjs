@@ -16,6 +16,7 @@ const UserMessage = ({ endUserId, auth: { user } }) => {
     var msgs = [];
     fetchingFromMessages(msgs, convoIdFrom);
     fetchingToMessages(msgs, convoIdTo);
+    // eslint-disable-next-line
   }, [endUserId]);
 
   // Fetching ConvoIDFrom Messages
@@ -51,30 +52,27 @@ const UserMessage = ({ endUserId, auth: { user } }) => {
       });
   };
   return (
-    <div>
-      <ScrollToBottom className='messages'>
-        {allMessages.length > 0 ? (
-          allMessages
-            .sort((a, b) => {
-              return (
-                new Date(a.createdAt).getTime() -
-                new Date(b.createdAt).getTime()
-              );
-            })
-            .map(message => (
-              <MessageItem
-                key={message.createdAt}
-                message={message}
-                userId={user.id}
-              />
-            ))
-        ) : (
-          <div>
-            <h5>Start Conversation...</h5>
-          </div>
-        )}
-      </ScrollToBottom>
-    </div>
+    <ScrollToBottom className='messages'>
+      {allMessages.length > 0 ? (
+        allMessages
+          .sort((a, b) => {
+            return (
+              new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+            );
+          })
+          .map(message => (
+            <MessageItem
+              key={message.createdAt}
+              message={message}
+              userId={user.id}
+            />
+          ))
+      ) : (
+        <div>
+          <h5>Start Conversation...</h5>
+        </div>
+      )}
+    </ScrollToBottom>
   );
 };
 
