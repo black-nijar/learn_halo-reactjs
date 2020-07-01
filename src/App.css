@@ -41,5 +41,23 @@
   align-self: flex-end;
 }
 .user-message {
-  padding: 10em;
+  padding: 1em;
+}
+.messages {
+  padding: 5% 0;
+  overflow: auto;
+  flex: auto;
+}
+.messageBox {
+  display: inline-block;
+  max-width: 100%;
+}
+.messageContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 5%;
+  margin-top: 3px;
+}
+.justifyEnd {
+  justify-content: flex-end;
 }

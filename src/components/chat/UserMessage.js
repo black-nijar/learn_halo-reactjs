@@ -1,29 +1,85 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
-const UserMessage = ({ location }) => {
-  const [endUser, setEndUser] = useState({});
-  console.log('location', location);
+import dataBase from '../../firebaseConfig/fbConfig';
+import MessageItem from './MessageItem';
+import ScrollToBottom from 'react-scroll-to-bottom';
+
+const UserMessage = ({ endUserId, auth: { user } }) => {
+  const [allMessages, setAllMessages] = useState([]);
+
+  const convoIdFrom = user.id + endUserId;
+  const convoIdTo = endUserId + user.id;
+
+  // Fetching Messages
   useEffect(() => {
-    const { user } = location;
-    setEndUser(user);
-  }, []);
-  return (
-    <div className='container'>
-      <div className='card' style={{ marginTop: '20px', margin: 'auto'}}>
-        <div className='card-header'>{endUser.name}</div>
-        <div className='user-message'>
+    var msgs = [];
+    fetchingFromMessages(msgs, convoIdFrom);
+    fetchingToMessages(msgs, convoIdTo);
+  }, [endUserId]);
 
-        </div>
-      </div>
-      <form className='form'>
-        <div className='form-group col-md-9' style={{ margin: 'auto' }}>
-          <div className='search-input '>
-            <input className='form-control' placeholder='Type a message...' />
+  // Fetching ConvoIDFrom Messages
+  const fetchingFromMessages = (msgs, convoIdFrom) => {
+    dataBase
+      .child('messages')
+      .child(convoIdFrom)
+      .on('child_added', snap => {
+        const snapValue = snap.val();
+        msgs.push({
+          from: snapValue.from,
+          createdAt: snapValue.createdAt,
+          message: snapValue.message
+        });
+
+        setAllMessages(msgs);
+      });
+  };
+
+  // Fetching ConvoIDTo Messages
+  const fetchingToMessages = (msgs, convoIdTo) => {
+    dataBase
+      .child('messages')
+      .child(convoIdTo)
+      .on('child_added', snap => {
+        const snapValue = snap.val();
+        msgs.push({
+          from: snapValue.from,
+          createdAt: snapValue.createdAt,
+          message: snapValue.message
+        });
+        setAllMessages(msgs);
+      });
+  };
+  return (
+    <div>
+      <ScrollToBottom className='messages'>
+        {allMessages.length > 0 ? (
+          allMessages
+            .sort((a, b) => {
+              return (
+                new Date(a.createdAt).getTime() -
+                new Date(b.createdAt).getTime()
+              );
+            })
+            .map(message => (
+              <MessageItem
+                key={message.createdAt}
+                message={message}
+                userId={user.id}
+              />
+            ))
+        ) : (
+          <div>
+            <h5>Start Conversation...</h5>
           </div>
-        </div>
-      </form>
+        )}
+      </ScrollToBottom>
     </div>
   );
 };
 
-export default UserMessage;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps)(UserMessage);

@@ -8,7 +8,7 @@ import SearchUser from './components/chat/SearchUser';
 import NavBar from './components/layout/NavBar';
 import PrivateRoute from './routing/PrivateRoute';
 import Translate from './components/chat/Translate'
-import UserMessage from './components/chat/UserMessage';
+import ChatBox from './components/chat/ChatBox';
 
 const App = () => {
   return (
@@ -22,7 +22,7 @@ const App = () => {
             <PrivateRoute exact path='/chat' component={Chat} />
             <PrivateRoute exact path='/user-profile' component={Profile} />
             <PrivateRoute exact path='/search-user' component={SearchUser} />
-            <PrivateRoute exact path='/message/:name' component={UserMessage}/>
+            <PrivateRoute exact path='/message/:name' component={ChatBox}/>
           </Switch>
         </section>
       </Fragment>
